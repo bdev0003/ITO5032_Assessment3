@@ -28,9 +28,13 @@
         </div>
 
         <div class="menu">
-            <button class="button" @click="() => togglePopup('buttonTrigger')">
+            <button class="button" @click="() => togglePopup('buttonTrigger')" v-if="!isLoggedIn">
                 <span class="material-icons">login</span>
                 <span class="text">Login</span>
+            </button>
+            <button class="button" @click="handleSignOut" v-if="isLoggedIn">
+                <span class="material-icons">logout</span>
+                <span class="text">Logout</span>
             </button>
             <router-link class="button" to="/settings">
                 <span class="material-icons">settings</span>
@@ -39,14 +43,14 @@
         </div>
     </aside>
 
-    <LoginOverlay v-if="popupTriggered.buttonTrigger" :togglePopup=" () => togglePopup('buttonTrigger')">
-        <h2>PopUp</h2>
-    </LoginOverlay>
+    <AuthOverlay v-if="popupTriggered.buttonTrigger" :togglePopup=" () => togglePopup('buttonTrigger')">
+    </AuthOverlay>
 </template>
 
 <script setup>
-import { ref } from 'vue';
-import LoginOverlay from './LoginOverlay.vue';
+import { ref, onMounted } from 'vue';
+import AuthOverlay from './AuthOverlay.vue';
+import { getAuth, onAuthStateChanged, signOut} from "firebase/auth"
 
 const popupTriggered = ref({
     buttonTrigger: false
@@ -59,6 +63,25 @@ const is_expanded = ref(localStorage.getItem("is_expanded") == "true")
 const ToggleSidebar = () => {
     is_expanded.value = !is_expanded.value
     localStorage.setItem("is_expanded", is_expanded.value)
+}
+
+const isLoggedIn = ref(false);
+let auth;
+onMounted (() => {
+    auth = getAuth();
+    onAuthStateChanged(auth, (user) => {
+        if (user) {
+            isLoggedIn.value = true;
+        } else {
+            isLoggedIn.value = false;
+        }
+    })
+})
+
+const handleSignOut = () => {
+    signOut(auth).then(() => {
+
+    })
 }
 
 </script>
