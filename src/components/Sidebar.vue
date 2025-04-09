@@ -18,20 +18,47 @@
                 <span class="material-icons">home</span>
                 <span class="text">Home</span>
             </router-link>
-            <router-link class="button" to="/">
+            <router-link class="button" to="/about">
                 <span class="material-icons">group</span>
                 <span class="text">About</span>
             </router-link>
         </div>
+
+        <div class="flex">
+        </div>
+
+        <div class="menu">
+            <button class="button" @click="() => togglePopup('buttonTrigger')">
+                <span class="material-icons">login</span>
+                <span class="text">Login</span>
+            </button>
+            <router-link class="button" to="/settings">
+                <span class="material-icons">settings</span>
+                <span class="text">Settings</span>
+            </router-link>
+        </div>
     </aside>
+
+    <LoginOverlay v-if="popupTriggered.buttonTrigger" :togglePopup=" () => togglePopup('buttonTrigger')">
+        <h2>PopUp</h2>
+    </LoginOverlay>
 </template>
 
 <script setup>
 import { ref } from 'vue';
+import LoginOverlay from './LoginOverlay.vue';
 
-const is_expanded = ref(false)
+const popupTriggered = ref({
+    buttonTrigger: false
+})
+const togglePopup = (trigger) => {
+    popupTriggered.value[trigger] = !popupTriggered.value[trigger]
+}
+
+const is_expanded = ref(localStorage.getItem("is_expanded") == "true")
 const ToggleSidebar = () => {
-    is_expanded.value = !is_expanded.value;
+    is_expanded.value = !is_expanded.value
+    localStorage.setItem("is_expanded", is_expanded.value)
 }
 
 </script>
@@ -72,6 +99,7 @@ aside {
             .material-icons{
                 font-size: 3 rem;
                 color: var(--side-text);
+                margin-right: 0.7rem;
             }
 
             &:hover {
@@ -84,11 +112,21 @@ aside {
         }
     }
 
-    
+    .flex {
+        flex: 1 1 0;
+    }
 
     h4, .button .text {
         opacity: 0;
         transition: 0.3s ease-out;
+    }
+
+    h4 {
+        color: var(--background-side-alt);
+        font-size: 1rem;
+        text-transform: uppercase;
+        margin-bottom: 1rem;
+        margin-left: 0.5rem;
     }
 
     .menu {
@@ -106,20 +144,29 @@ aside {
                 font-size: 2rem;
                 color: var(--side-text);
                 transition: 0.2s ease-out;
-                margin-right: 1rem;
+                margin-right: 1.5rem;
                 margin-bottom:0.2rem;
+                margin-left: 0.5rem;
             }
 
             .text {
                 color: var(--side-text)
             }
 
-            &:hover {
+            &:hover, &.router-link-exact-active{
                 background-color: var(--background-side-alt);
 
-                .material-icons, .text {
-                    color: var(--background-side-back);
+                .material-icons {
+                    color: var(--background-side);
                 }
+                
+                .text {
+                    color: var(--background-side);
+                }
+            }
+
+            &.router-link-exact-active {
+                border-right: 5px solid var(--side-active);
             }
         }
     }
@@ -148,3 +195,6 @@ aside {
 
 }
 </style>
+
+
+<!-- https://www.youtube.com/watch?v=Ul4KOXNQJSk -->

@@ -13,7 +13,7 @@ import Sidebar from './components/Sidebar.vue';
 :root {
   --background-side: #a644db;
   --background-side-alt: #ebc7ff;
-  --backgroud-side-back: #cb6eff;
+  --background-side-back: #cb6eff;
   --side-hover: #595959;
   --side-active: #1a1a1a;
   --side-active-alt: #2b2b2b;
