@@ -11,11 +11,11 @@ import Sidebar from './components/Sidebar.vue';
 
 <style>
 :root {
-  --background-side: #a644db;
-  --background-side-alt: #ebc7ff;
+  --background-side: #360c4d;
+  --background-side-alt: #c988ec;
   --background-side-back: #cb6eff;
   --side-hover: #595959;
-  --side-active: #1a1a1a;
+  --side-active: #ae00ff;
   --side-active-alt: #2b2b2b;
   --side-text: #fcf7ff;
   --side-width: 250px;

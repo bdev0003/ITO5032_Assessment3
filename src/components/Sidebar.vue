@@ -1,9 +1,11 @@
 <template>
     <aside :class="`${is_expanded && 'is-expanded'}`">
-        <div class="logo">
+        <div class="logo" v-if="!is_expanded">
             <img src="../assets/AHC_square.png" alt="AHCSmallLogo">
         </div>
-
+        <div class="logo-large" v-if="is_expanded">
+            <img src="../assets/AHC_large.png" alt="AHCLargeLogo">
+        </div>
         <div class="menu-toggle-wrap">
             <button class="menu-toggle" @click="ToggleSidebar">
                 <span class="material-icons">
@@ -12,15 +14,27 @@
             </button>
         </div>
 
-        <h4>Menu</h4>
         <div class="menu">
+            <h4>Menu</h4>
             <router-link class="button" to="/">
                 <span class="material-icons">home</span>
                 <span class="text">Home</span>
             </router-link>
             <router-link class="button" to="/about">
                 <span class="material-icons">group</span>
-                <span class="text">About</span>
+                <span class="text">About  Us</span>
+            </router-link>
+            <router-link class="button" to="/patients">
+                <span class="material-icons">medical_services</span>
+                <span class="text">For Patients</span>
+            </router-link>
+            <router-link class="button" to="/forum">
+                <span class="material-icons">forum</span>
+                <span class="text">Health Forum</span>
+            </router-link>
+            <router-link class="button" to="/contact">
+                <span class="material-icons">contact_page</span>
+                <span class="text">Contact Us</span>
             </router-link>
         </div>
 
@@ -107,9 +121,18 @@ aside {
         }
     }
 
+    .logo-large {
+        margin-left: -3rem;
+        margin-top: -3rem;
+        img {
+            width: 20rem;
+        }
+    }
+
     .menu-toggle-wrap {
         display: flex;
-        justify-content: flex-end;
+        justify-content: center;
+        padding-top: 1rem;
         margin-bottom: 1rem;
 
         position: relative;
@@ -149,11 +172,12 @@ aside {
         font-size: 1rem;
         text-transform: uppercase;
         margin-bottom: 1rem;
-        margin-left: 0.5rem;
+        margin-left: 2rem;
     }
 
     .menu {
         margin: 0 -1rem;
+        margin-top: -2rem;
         text-decoration: none;
 
         .button{
