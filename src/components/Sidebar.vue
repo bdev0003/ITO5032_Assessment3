@@ -242,6 +242,3 @@ aside {
 
 }
 </style>
-
-
-<!-- https://www.youtube.com/watch?v=Ul4KOXNQJSk -->
