@@ -50,6 +50,7 @@ const login = ()=> {
   signInWithEmailAndPassword(getAuth(), email.value, password.value)
     .then((data) => {
       console.log("Successfully logged in!");
+      router.go();
       props.togglePopup();
     })
     .catch((error) => {
@@ -95,5 +96,3 @@ const toggleRegister = () => {
   align-content: center;
 }
 </style>
-
-<!--https://www.youtube.com/watch?v=HorXomQrOi8-->

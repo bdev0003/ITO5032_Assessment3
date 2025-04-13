@@ -1,15 +1,16 @@
 <template>
-    <div>
+    <div class="add-form">
         <h2>Add article</h2>
-        <form @submit.prevent = "addBook">
+        <form class="form" @submit.prevent = "addBook">
             <div>
-                <label for="title">Article Tite</label>
-                <input type="text" v-model="title" id="title" required />
+                <input type="text" v-model="title" id="title" placeholder="Article Title" required />
             </div>
             <div class="textarea-field field">
                 <textarea name="article" id="article" cols="30" rows="10" placeholder="Article Contents" autocomplete="off"></textarea>
             </div>
-            <button type="submit" @click="addNews()">Add Article</button>
+            <button class="button" type="submit" @click="addNews()">
+                <span class="text">Add Article</span>
+            </button>
         </form>
     </div>
 </template>
@@ -19,6 +20,7 @@ import { ref } from 'vue';
 import db from '../../main.js';
 import { collection, addDoc } from 'firebase/firestore';
 import router from '@/router';
+import { toRefs } from 'vue';
 
 const title = ref('');
 const article = ref('');
@@ -37,8 +39,46 @@ const addNews = async () => {
         console.error('Error adding article: ', error);
     }
 }
+
 </script>
 
-<style>
+<style scoped>
+*{
+    text-align: center;
+}
+.add-form {
+    justify-self: center;
+    width: 60%;
+    background-color: var(--background-side-alt);
+    .h2 {
+        text-align: center;
+    }
+}
 
+.form {
+    margin: 0.5rem ;
+}
+
+.button {
+  display: inline;
+  margin: 1rem;
+  align-content: center;
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  background-color: var(--background-side);
+  border-radius: 4px;
+  width: 10rem;
+
+  .text {
+      color: var(--side-text);
+  }
+
+  &:hover {
+      background-color: var(--background-side-alt);
+      
+      .text {
+          color: var(--background-side);
+      }
+  }
+}
 </style>

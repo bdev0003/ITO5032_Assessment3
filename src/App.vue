@@ -1,6 +1,5 @@
 <script setup>
 import Sidebar from './components/Sidebar.vue';
-import PicHeader from './components/PicHeader.vue';
 </script>
 
 <template>
@@ -9,7 +8,6 @@ import PicHeader from './components/PicHeader.vue';
       <Sidebar/>
     </div>
     <div class="router-wrap">
-      <PicHeader />
       <router-view/>
     </div>
   </div>

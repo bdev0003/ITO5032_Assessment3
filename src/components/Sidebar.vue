@@ -57,16 +57,17 @@
 <script setup>
 import { ref, onMounted } from 'vue';
 import AuthOverlay from './AuthOverlay.vue';
-import { getAuth, onAuthStateChanged, signOut} from "firebase/auth"
+import { getAuth, onAuthStateChanged, signOut} from "firebase/auth";
+import router from '@/router';
 
 const popupTriggered = ref({
     buttonTrigger: false
 })
 const togglePopup = (trigger) => {
-    popupTriggered.value[trigger] = !popupTriggered.value[trigger]
+    popupTriggered.value[trigger] = !popupTriggered.value[trigger];
 }
 
-const is_expanded = ref(localStorage.getItem("is_expanded") == "true")
+const is_expanded = ref(localStorage.getItem("is_expanded") == "true");
 const ToggleSidebar = () => {
     is_expanded.value = !is_expanded.value
     localStorage.setItem("is_expanded", is_expanded.value)
@@ -87,7 +88,7 @@ onMounted (() => {
 
 const handleSignOut = () => {
     signOut(auth).then(() => {
-
+        router.go();
     })
 }
 
@@ -95,7 +96,6 @@ const handleSignOut = () => {
 
 <style scoped>
 .wrapper {
-    position-anchor:
 }
 aside {
     display: flex;

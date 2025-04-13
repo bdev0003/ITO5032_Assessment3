@@ -1,16 +1,23 @@
 <template>
-    <div>
+    <div class="add-form">
         <h2>Add Doctor</h2>
-        <form @submit.prevent = "addBook">
-            <div>
-                <label for="h-name">Health Professional's Name</label>
-                <input type="text" v-model="hname" id="h-name" required />
+        <form class="addForm" @submit.prevent = "addBook">
+            <div class="row">
+                <div class="col">
+                    <input type="text" class="form" v-model="htitle" id="h-title" placeholder="Title" required />
+                </div>
+                <div class="col">
+                    <input type="text" class="form" v-model="hname" id="h-name" placeholder="Full Name" required />
+                </div>
             </div>
-            <div>
-                <label for="h-title">Title:</label>
-                <input type="text" v-model="htitle" id="h-title" required />
+            <div class="rwo">
+                <div class="col">
+                    <textarea v-model="hspecialties" name="h-specialties" id="h-specialities" placeholder="Specialties"></textarea>
+                </div>
             </div>
-            <button type="submit" @click="addHP()">Add Professional</button>
+            <button class="button" type="submit" @click="addHP()">
+                <span class="text">Add Professional</span>
+            </button>
         </form>
     </div>
 </template>
@@ -23,15 +30,19 @@ import router from '@/router';
 
 const hname = ref('');
 const htitle = ref('');
+const hspecialties = ref('');
+
 
 const addHP = async () => {
     try {
         await addDoc(collection(db, 'hps'), {
             hname: hname.value,
-            htitle: htitle.value
+            htitle: htitle.value,
+            hspecialties: hspecialties.value
         });
         hname.value = '';
         htitle.value = '';
+        hspecialties.value = '';
         alert('Health professional added successfully!');
         router.go();
     } catch (error) {
@@ -40,6 +51,44 @@ const addHP = async () => {
 }
 </script>
 
-<style>
+<style scoped>
+.add-form {
+    justify-self: center;
+    width: 60%;
+    background-color: var(--background-side-alt);
+    .h2 {
+        text-align: center;
+    }
+}
 
+.addForm {
+    margin: 5px;
+}
+
+.form {
+    margin: 0.5rem;
+}
+
+.button {
+  display: inline;
+  margin: 1rem;
+  align-content: center;
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  background-color: var(--background-side);
+  border-radius: 4px;
+  width: 10rem;
+
+  .text {
+      color: var(--side-text);
+  }
+
+  &:hover {
+      background-color: var(--background-side-alt);
+      
+      .text {
+          color: var(--background-side);
+      }
+  }
+}
 </style>

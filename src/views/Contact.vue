@@ -1,5 +1,8 @@
 <template>
     <div class="cont-container">
+        <div class="header-wrap">
+            <h1>Contact Us</h1>
+        </div>
         <div class="description">
             <div class="card">
                 <ContactMap></ContactMap>
@@ -18,7 +21,17 @@ import ContactForm from '@/components/contact/ContactForm.vue';
 </script>
 
 <style scoped>
-.cont-container {
-    width:calc(100%);
+.header-wrap {
+    height: 175px;
+    align-content: center;
+    background-image: url('../assets/contact-header.jpg');
+    background-position: center;
+    background-size: cover;
+    margin-bottom: 20px;
+}
+
+h1 {
+    text-align: center;
+    color: var(--side-text);
 }
 </style>
