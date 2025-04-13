@@ -1,12 +1,12 @@
 <template>
     <div class="add-form">
         <h2>Add article</h2>
-        <form class="form" @submit.prevent = "addBook">
+        <form class="form" @submit.prevent = "addNewses">
             <div>
-                <input type="text" v-model="title" id="title" placeholder="Article Title" required />
+                <input type="text" v-model="title" id="title" placeholder="Article Title" required autocomplete="off"/>
             </div>
             <div class="textarea-field field">
-                <textarea name="article" id="article" cols="30" rows="10" placeholder="Article Contents" autocomplete="off"></textarea>
+                <textarea name="article" v-model="article" id="article" cols="30" rows="10" placeholder="Article Contents" autocomplete="off"></textarea>
             </div>
             <button class="button" type="submit" @click="addNews()">
                 <span class="text">Add Article</span>
@@ -20,7 +20,6 @@ import { ref } from 'vue';
 import db from '../../main.js';
 import { collection, addDoc } from 'firebase/firestore';
 import router from '@/router';
-import { toRefs } from 'vue';
 
 const title = ref('');
 const article = ref('');

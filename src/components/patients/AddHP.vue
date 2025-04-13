@@ -4,10 +4,10 @@
         <form class="addForm" @submit.prevent = "addBook">
             <div class="row">
                 <div class="col">
-                    <input type="text" class="form" v-model="htitle" id="h-title" placeholder="Title" required />
+                    <input type="text" class="form" v-model="htitle" id="h-title" autocomplete="off" placeholder="Title" required />
                 </div>
                 <div class="col">
-                    <input type="text" class="form" v-model="hname" id="h-name" placeholder="Full Name" required />
+                    <input type="text" class="form" v-model="hname" id="h-name" autocomplete="off" placeholder="Full Name" required />
                 </div>
             </div>
             <div class="rwo">
