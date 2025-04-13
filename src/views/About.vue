@@ -3,7 +3,7 @@
         <div class="header-wrap">
             <h1>About Us</h1>
         </div>
-        <div class="carousel slide" data-ride="carasouel" id="pictureCarousel">
+        <!--<div class="carousel slide" data-ride="carasouel" id="pictureCarousel">
             <div class="carousel-inner">
                 <div class="carousel-item active">
                     <img src="../assets/contact-header.jpg" alt="First Slide" class="d-block w-100">
@@ -12,7 +12,7 @@
                     <img src="../assets/contact-header.jpg" alt="Second Slide" class="d-block w-100">
                 </div>
             </div>
-        </div>
+        </div>-->
     </div>
 </template>
 

@@ -12,7 +12,7 @@
         <span class="text">Close Form</span>
       </button>
     </div>
-    <div class="hpList">
+    <div class="cardList">
       <ul style="list-style-type: none;">
         <li v-for="hp in healthProfs" :key="hp.id">
           <div class="card">
