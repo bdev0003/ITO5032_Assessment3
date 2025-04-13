@@ -1,11 +1,17 @@
 <script setup>
 import Sidebar from './components/Sidebar.vue';
+import PicHeader from './components/PicHeader.vue';
 </script>
 
 <template>
   <div class="app">
-    <Sidebar/>
-    <router-view/>
+    <div class="sidebar-wrap">
+      <Sidebar/>
+    </div>
+    <div class="router-wrap">
+      <PicHeader />
+      <router-view/>
+    </div>
   </div>
 </template>
 
@@ -42,6 +48,10 @@ button {
 
 .app{
   display: flex;
+}
+
+.router-wrap {
+  width: 100%;
 }
 
 main{

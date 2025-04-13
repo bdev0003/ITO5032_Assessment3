@@ -1,62 +1,55 @@
 <template>
-    <aside :class="`${is_expanded && 'is-expanded'}`">
-        <div class="logo" v-if="!is_expanded">
-            <img src="../assets/AHC_square.png" alt="AHCSmallLogo">
-        </div>
-        <div class="logo-large" v-if="is_expanded">
-            <img src="../assets/AHC_large.png" alt="AHCLargeLogo">
-        </div>
-        <div class="menu-toggle-wrap">
-            <button class="menu-toggle" @click="ToggleSidebar">
-                <span class="material-icons">
-                    double_arrow
-                </span>
-            </button>
-        </div>
+    <div class="wrapper">
+        <aside :class="`${is_expanded && 'is-expanded'}`">
+            <div class="logo" v-if="!is_expanded">
+                <img src="../assets/AHC_square.png" alt="AHCSmallLogo">
+            </div>
+            <div class="logo-large" v-if="is_expanded">
+                <img src="../assets/AHC_large.png" alt="AHCLargeLogo">
+            </div>
+            <div class="menu-toggle-wrap">
+                <button class="menu-toggle" @click="ToggleSidebar">
+                    <span class="material-icons">
+                        double_arrow
+                    </span>
+                </button>
+            </div>
 
-        <div class="menu">
-            <h4>Menu</h4>
-            <router-link class="button" to="/">
-                <span class="material-icons">home</span>
-                <span class="text">Home</span>
-            </router-link>
-            <router-link class="button" to="/about">
-                <span class="material-icons">group</span>
-                <span class="text">About  Us</span>
-            </router-link>
-            <router-link class="button" to="/patients">
-                <span class="material-icons">medical_services</span>
-                <span class="text">For Patients</span>
-            </router-link>
-            <router-link class="button" to="/forum">
-                <span class="material-icons">forum</span>
-                <span class="text">Health Forum</span>
-            </router-link>
-            <router-link class="button" to="/contact">
-                <span class="material-icons">contact_page</span>
-                <span class="text">Contact Us</span>
-            </router-link>
-        </div>
+            <div class="menu">
+                <h4>Menu</h4>
+                <router-link class="button" to="/">
+                    <span class="material-icons">home</span>
+                    <span class="text">Home</span>
+                </router-link>
+                <router-link class="button" to="/about">
+                    <span class="material-icons">group</span>
+                    <span class="text">About  Us</span>
+                </router-link>
+                <router-link class="button" to="/patients">
+                    <span class="material-icons">medical_services</span>
+                    <span class="text">For Patients</span>
+                </router-link>
+                <router-link class="button" to="/contact">
+                    <span class="material-icons">contact_page</span>
+                    <span class="text">Contact Us</span>
+                </router-link>
+            </div>
 
-        <div class="flex">
-        </div>
+            <div class="flex">
+            </div>
 
-        <div class="menu">
-            <button class="button" @click="() => togglePopup('buttonTrigger')" v-if="!isLoggedIn">
-                <span class="material-icons">login</span>
-                <span class="text">Login</span>
-            </button>
-            <button class="button" @click="handleSignOut" v-if="isLoggedIn">
-                <span class="material-icons">logout</span>
-                <span class="text">Logout</span>
-            </button>
-            <router-link class="button" to="/settings">
-                <span class="material-icons">settings</span>
-                <span class="text">Settings</span>
-            </router-link>
-        </div>
-    </aside>
-
+            <div class="menu">
+                <button class="button" @click="() => togglePopup('buttonTrigger')" v-if="!isLoggedIn">
+                    <span class="material-icons">login</span>
+                    <span class="text">Login</span>
+                </button>
+                <button class="button" @click="handleSignOut" v-if="isLoggedIn">
+                    <span class="material-icons">logout</span>
+                    <span class="text">Logout</span>
+                </button>
+            </div>
+        </aside>
+    </div>
     <AuthOverlay v-if="popupTriggered.buttonTrigger" :togglePopup=" () => togglePopup('buttonTrigger')">
     </AuthOverlay>
 </template>
@@ -101,11 +94,15 @@ const handleSignOut = () => {
 </script>
 
 <style scoped>
+.wrapper {
+    position-anchor:
+}
 aside {
     display: flex;
     flex-direction: column;
-    width: calc(5rem);
+    width: 5rem;
     min-height: 100vh;
+    height: 100%;
     overflow: hidden;
     padding: 1rem;
 
@@ -125,7 +122,7 @@ aside {
         margin-left: -3rem;
         margin-top: -3rem;
         img {
-            width: 20rem;
+            width: 115%;
         }
     }
 
@@ -216,6 +213,10 @@ aside {
                 border-right: 5px solid var(--side-active);
             }
         }
+    }
+
+    button.button {
+        width: 100%;
     }
 
     &.is-expanded {
